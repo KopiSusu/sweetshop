@@ -14,7 +14,7 @@ Babel all day and all night (gotta love writting javascript that compiles to... 
 2. Run `npm install`
 
 ## TO RUN: 
-# Iv kept the same default commands just to keep it easy, webpack builds src into public then express serves it up on port: 3000
+Iv kept the same default commands just to keep it easy, webpack builds src into public then express serves it up on port: 3000
 
 1. npm run serve --> runs express and webpack-dev-server with hot-reloading because meh to refreshing
 2. npm run test --> runs karma start, which has technically less characters so you could justs go with karma start 
