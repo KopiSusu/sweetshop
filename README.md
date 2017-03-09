@@ -1,27 +1,53 @@
-# react.js shopping cart
+# Stride Code Challange!!
 
-example of shopping cart implemented in react.js and redux.js
+## THE SUPER SWEET SUGAR SHOP
 
-for demo [click here](http://krzysu.github.io/reactjs-shopping-cart/)
+React, Redux, Webpack implementation of Super Sweet Sugar Shop.
 
-## getting started
+Karma, Jasmine, Enzyme (airBnB's pretty awesome react specific testing library)
 
-install dependencies and start local dev server
+Babel all day and all night (gotta love writting javascript that compiles to... more javascript!!!)
 
-```sh
-npm install
-npm start
-```
+## SETUP
 
-## details
-- build with [create react app](https://github.com/facebookincubator/create-react-app). Check their page for more details.
-- this example is using redux.js for application state management, to learn more about it I recommend [this tutorial](https://egghead.io/courses/getting-started-with-redux).
-- you can look under the hood directly from your browser using [redux devtools](https://github.com/zalmoxisus/redux-devtools-extension). Install extension for your browser, open demo page (link above) and see how app state changes when you interact with it.
-- if you wonder why reducers, actions and selectors are all in one file inside folder called `ducks`, [read more here](https://github.com/erikras/ducks-modular-redux).
+1. Install [NodeJS](nodejs.org)
+2. Run `npm install`
 
-## TODO
-- add reducers and selectors unit tests
+## TO RUN: 
+# Iv kept the same default commands just to keep it easy, webpack builds src into public then express serves it up on port: 3000
 
-* * *
-author: Kris Urbas [@krzysu](https://twitter.com/krzysu)   
-licence: MIT
+1. npm run serve --> runs express and webpack-dev-server with hot-reloading because meh to refreshing
+2. npm run test --> runs karma start, which has technically less characters so you could justs go with karma start 
+
+## File Structure
+
+	* -- src
+		  |___ actions
+		  |___ components
+		  |___ containers
+		  |___ data
+		  |___ reducers
+		  |___ index.js
+
+
+## TEST FILES
+
+All test files are in __test__ folders in their respective folders (e.g actions/__test__, components/__test__ )
+
+
+## NOTES:
+
+This was probably the most enjoyable codding challange iv taken. And the constant emphasis on testing is insanely refreshing. This was my first advent into Enzyme and I was amazed at how simple it was and easy to learn, especially compared to using the regular reactTestUtils (where your component test code normally doubles or tripples the size of your actual components). Their doc is pretty decent as well.
+
+I'm a big Redux fan. Team is awesome. Code is awesome. Single Store is awesome. Though for the small amount of state this app consisted off it may have been unnessecary, I dont think flux would get to that annoying to maintain level like it normally does in large applications.
+
+No routes needed for this app but React-router combined with React-router-redux makes it super easy to know where you are at all times in all the places.
+
+I don't think webpack even needs an introduction at this point, bascially industry standard.
+
+I added minimal styling to the app, as it was not asked for.
+
+Very much looking forward to the code review! 
+
+
+

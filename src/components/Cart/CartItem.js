@@ -1,18 +1,31 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-const CartItem = ({ name, price, currency }) => {
-    return (
-        <div className="cart-item">
-          <span className="cart-item__name">{name}</span>
-          <span className="cart-item__price">{price} {currency}</span>
+class CartItem extends Component {
+    handleClick = () => {
+        const { id, removeFromCart } = this.props;
+        
+        removeFromCart(id);
+    }
+
+    render() {
+      const {type, price, quantity} = this.props
+
+      return (
+        <div className="cart__item">
+            <span className="cart__item__type">{type}</span>
+            <span className="cart__item__quantity">{quantity}</span>
+            <span className="cart__item__price">${price}</span>
+            <span className="cart__item__remove" onClick={this.handleClick}>Remove</span>
         </div>
-    );
+      );
+    }
 }
 
 CartItem.propTypes = {
-    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    currency: PropTypes.string.isRequired
+    quantity: PropTypes.number.isRequired,
+    removeFromCart: PropTypes.func.isRequired
 }
 
 export default CartItem;
