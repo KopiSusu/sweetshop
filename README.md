@@ -34,6 +34,9 @@ Iv kept the same default commands just to keep it easy, webpack builds src into 
 
 All test files are in __test__ folders in their respective folders (e.g actions/__test__, components/__test__ )
 
+## Platforms
+
+Should work on mobile, tablet, and desktop.
 
 ## NOTES:
 
