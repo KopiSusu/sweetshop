@@ -6,7 +6,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<Navbar title='Sugar Sweet Chocolate Treats' />
+				<Navbar title='Sugar Sweet Sugar Shop' />
 				<Inventory />
 			</div>
 		);

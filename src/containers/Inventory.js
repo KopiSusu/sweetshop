@@ -14,7 +14,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
     toggleCart: () => dispatch(toggleCart()),
-    addToCart: (id) => dispatch(addToCart(id))
+    addToCart: (id, quantity) => dispatch(addToCart(id, quantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);

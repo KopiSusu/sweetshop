@@ -11,6 +11,10 @@ describe('<Product />', () => {
 
 	let wrapper;
 
+	const onChange = () => {
+
+	}
+
 	beforeEach(() => {
 		wrapper = shallow(<Product 
 								{...inventoryData['chocolates'][0]}
@@ -25,6 +29,12 @@ describe('<Product />', () => {
 		expect(wrapper.find('.product__type').text()).toBe(inventoryData['chocolates'][0].type.toUpperCase());
 		expect(wrapper.find('.product__description').text()).toBe(inventoryData['chocolates'][0].description);
 		expect(wrapper.find('.product__price').text()).toBe(`$${inventoryData['chocolates'][0].price}`);
+	});
+
+	xit('renders <input /> without issue', () => {
+		expect(wrapper.contains(
+			<input className="product__input" type="number" defaultValue="1" />
+		)).toBe(true);
 	});
 
 });

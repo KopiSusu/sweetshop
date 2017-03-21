@@ -78,6 +78,14 @@ describe('<Cart />', () => {
 			expect(wrapper.find('.cart__item__price').text()).toBe(`$${getItems(state, {})[0].price}`);
 		});
 	})
+	
 });
+
+
+
+
+
+
+
 
 

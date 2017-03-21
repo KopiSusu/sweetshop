@@ -4,12 +4,12 @@ module.exports = (config) => {
   	config.set({
 
 	    // Add any browsers here
-	    browsers: ['Chrome', 'PhantomJS'],
+	    browsers: ['PhantomJS'],
 	    frameworks: ['jasmine'],
 
 	    // The entry point for our test suite
 	    basePath: '.',
-	    autoWatch: false,
+	    autoWatch: true,
 	    files: [
 	    	'tests.webpack.js'
 	    ],
@@ -55,7 +55,7 @@ module.exports = (config) => {
 	    },
 
 	    reporters: ['dots'],
-	    singleRun: true, // exit after tests have completed
+	    singleRun: false, // exit after tests have completed
 
 	    webpackMiddleware: {
 	      	noInfo: true

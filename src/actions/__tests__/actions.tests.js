@@ -3,13 +3,14 @@ import * as actions from '..'
 
 describe('action creators', () => {
 
-	it('should create an action to add item to cart', () => {
+	it('should create an action to add item to cart with a quantity', () => {
 		const id = 1
+		const quantity = 1
 		const expectedAction = {
 			type: 'CART_ADD',
-			payload: { productId: id }
+			payload: { productId: id, quantity: quantity}
 		}
-		expect(actions.addToCart(id)).toEqual(expectedAction)
+		expect(actions.addToCart(id, quantity)).toEqual(expectedAction)
 	})
 
 	it('should create an action to remove item to cart', () => {

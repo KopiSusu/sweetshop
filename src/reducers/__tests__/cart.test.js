@@ -11,13 +11,13 @@ describe('cart reducer', () => {
 		expect(reducer(initialState, {})).toEqual(initialState)
 	})
 
-	it('should handle CART_ADD', () => {
+	it('should handle CART_ADD to add new item to cart by quantity', () => {
 		expect(reducer(initialState, {
 			type: 'CART_ADD',
-			payload: { productId: 1 }
+			payload: { productId: 1, quantity: 2 }
 		})).toEqual({
 			open: false,
-			items: [{ id: 1, quantity: 1}]
+			items: [{ id: 1, quantity: 2}]
 		})
 	})
 
@@ -29,10 +29,10 @@ describe('cart reducer', () => {
 	it('should increment quantity for exisiting CART_ADD', () => {
 		expect(reducer(secondState, {
 			type: 'CART_ADD',
-			payload: { productId: 1 }
+			payload: { productId: 1, quantity: 2  }
 		})).toEqual({
 			open: false,
-			items: [{ id: 1, quantity: 2}]
+			items: [{ id: 1, quantity: 3}]
 		})
 	})
 

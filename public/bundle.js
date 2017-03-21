@@ -23818,35 +23818,35 @@
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+		value: true
 	});
 	exports.getInventory = getInventory;
 	exports.getProduct = getProduct;
 
 	// nothing to do here, but we need products node in redux store
 	exports.default = function () {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	    var action = arguments[1];
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+		var action = arguments[1];
 
-	    switch (action.type) {
-	        default:
-	            return state;
-	    }
+		switch (action.type) {
+			default:
+				return state;
+		}
 	};
 
 	// selectors
 
 
 	function getInventory(state, props) {
-	    return state.inventory;
+		return state.inventory;
 	}
 
 	function getProduct(state, props) {
-	    var product = state.inventory.find(function (item) {
-	        return item.id === props.id;
-	    });
-	    product.quantity = props.quantity;
-	    return product;
+		var product = state.inventory.find(function (item) {
+			return item.id === props.id;
+		});
+		product.quantity = props.quantity;
+		return product;
 	}
 
 	 ;(function register() { /* react-hot-loader/webpack */ if (process.env.NODE_ENV !== 'production') { if (typeof __REACT_HOT_LOADER__ === 'undefined') { return; } if (typeof module.exports === 'function') { __REACT_HOT_LOADER__.register(module.exports, 'module.exports', "/Users/KopiSusu/Documents/development/cartshop/src/reducers/inventory.js"); return; } for (var key in module.exports) { if (!Object.prototype.hasOwnProperty.call(module.exports, key)) { continue; } var namedExport = void 0; try { namedExport = module.exports[key]; } catch (err) { continue; } __REACT_HOT_LOADER__.register(namedExport, key, "/Users/KopiSusu/Documents/development/cartshop/src/reducers/inventory.js"); } } })();
@@ -23886,19 +23886,14 @@
 	    switch (action.type) {
 	        case 'CART_ADD':
 	            if (isInCart({ cart: state }, { id: action.payload.productId })) {
-
-	                // Extremely interesting bug.... without log it refuses to update.... I am extremely unsure why
-	                console.log(state.items.map(function (item) {
-	                    return item.id === action.payload.productId ? _extends({}, item, { quantity: item.quantity++ }) : item;
-	                }));
 	                return _extends({}, state, {
 	                    items: state.items.map(function (item) {
-	                        return item.id === action.payload.productId ? _extends({}, item, { quantity: item.quantity++ }) : item;
+	                        return item.id === action.payload.productId ? _extends({}, item, { quantity: item.quantity + action.payload.quantity }) : item;
 	                    })
 	                });
 	            }
 	            return _extends({}, state, {
-	                items: [].concat(_toConsumableArray(state.items), [{ id: action.payload.productId, quantity: 1 }])
+	                items: [].concat(_toConsumableArray(state.items), [{ id: action.payload.productId, quantity: action.payload.quantity }])
 	            });
 	        case 'CART_REMOVE':
 	            return _extends({}, state, {
@@ -24074,8 +24069,8 @@
 	        toggleCart: function toggleCart() {
 	            return dispatch((0, _actions.toggleCart)());
 	        },
-	        addToCart: function addToCart(id) {
-	            return dispatch((0, _actions.addToCart)(id));
+	        addToCart: function addToCart(id, quantity) {
+	            return dispatch((0, _actions.addToCart)(id, quantity));
 	        }
 	    };
 	};
@@ -24115,7 +24110,7 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -24145,48 +24140,48 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Inventory = function (_Component) {
-	  _inherits(Inventory, _Component);
+		_inherits(Inventory, _Component);
 
-	  function Inventory() {
-	    _classCallCheck(this, Inventory);
+		function Inventory() {
+			_classCallCheck(this, Inventory);
 
-	    return _possibleConstructorReturn(this, (Inventory.__proto__ || Object.getPrototypeOf(Inventory)).apply(this, arguments));
-	  }
+			return _possibleConstructorReturn(this, (Inventory.__proto__ || Object.getPrototypeOf(Inventory)).apply(this, arguments));
+		}
 
-	  _createClass(Inventory, [{
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props,
-	          inventory = _props.inventory,
-	          open = _props.open,
-	          numberInCart = _props.numberInCart,
-	          addToCart = _props.addToCart,
-	          toggleCart = _props.toggleCart;
+		_createClass(Inventory, [{
+			key: 'render',
+			value: function render() {
+				var _props = this.props,
+				    inventory = _props.inventory,
+				    open = _props.open,
+				    numberInCart = _props.numberInCart,
+				    addToCart = _props.addToCart,
+				    toggleCart = _props.toggleCart;
 
 
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'inventory' },
-	        _react2.default.createElement(_InventoryList2.default, {
-	          addToCart: addToCart,
-	          inventory: inventory }),
-	        _react2.default.createElement(_ActionBlock2.default, {
-	          toggleCart: toggleCart,
-	          numberInCart: numberInCart }),
-	        open && _react2.default.createElement(_Cart2.default, null)
-	      );
-	    }
-	  }]);
+				return _react2.default.createElement(
+					'div',
+					{ className: 'inventory' },
+					_react2.default.createElement(_InventoryList2.default, {
+						addToCart: addToCart,
+						inventory: inventory }),
+					_react2.default.createElement(_ActionBlock2.default, {
+						toggleCart: toggleCart,
+						numberInCart: numberInCart }),
+					open && _react2.default.createElement(_Cart2.default, null)
+				);
+			}
+		}]);
 
-	  return Inventory;
+		return Inventory;
 	}(_react.Component);
 
 	Inventory.propTypes = {
-	  inventory: _react.PropTypes.array,
-	  open: _react.PropTypes.bool.isRequired,
-	  numberInCart: _react.PropTypes.number.isRequired,
-	  toggleCart: _react.PropTypes.func.isRequired,
-	  addToCart: _react.PropTypes.func.isRequired
+		inventory: _react.PropTypes.array,
+		open: _react.PropTypes.bool.isRequired,
+		numberInCart: _react.PropTypes.number.isRequired,
+		toggleCart: _react.PropTypes.func.isRequired,
+		addToCart: _react.PropTypes.func.isRequired
 	};
 
 	exports.default = Inventory;
@@ -24408,7 +24403,7 @@
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+		value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -24426,74 +24421,74 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var CartItem = function (_Component) {
-	    _inherits(CartItem, _Component);
+		_inherits(CartItem, _Component);
 
-	    function CartItem() {
-	        var _ref;
+		function CartItem() {
+			var _ref;
 
-	        var _temp, _this, _ret;
+			var _temp, _this, _ret;
 
-	        _classCallCheck(this, CartItem);
+			_classCallCheck(this, CartItem);
 
-	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	            args[_key] = arguments[_key];
-	        }
+			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+				args[_key] = arguments[_key];
+			}
 
-	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CartItem.__proto__ || Object.getPrototypeOf(CartItem)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
-	            var _this$props = _this.props,
-	                id = _this$props.id,
-	                removeFromCart = _this$props.removeFromCart;
-
-
-	            removeFromCart(id);
-	        }, _temp), _possibleConstructorReturn(_this, _ret);
-	    }
-
-	    _createClass(CartItem, [{
-	        key: "render",
-	        value: function render() {
-	            var _props = this.props,
-	                type = _props.type,
-	                price = _props.price,
-	                quantity = _props.quantity;
+			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CartItem.__proto__ || Object.getPrototypeOf(CartItem)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
+				var _this$props = _this.props,
+				    id = _this$props.id,
+				    removeFromCart = _this$props.removeFromCart;
 
 
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "cart__item" },
-	                _react2.default.createElement(
-	                    "span",
-	                    { className: "cart__item__type" },
-	                    type
-	                ),
-	                _react2.default.createElement(
-	                    "span",
-	                    { className: "cart__item__quantity" },
-	                    quantity
-	                ),
-	                _react2.default.createElement(
-	                    "span",
-	                    { className: "cart__item__price" },
-	                    "$",
-	                    price
-	                ),
-	                _react2.default.createElement(
-	                    "span",
-	                    { className: "cart__item__remove", onClick: this.handleClick },
-	                    "Remove"
-	                )
-	            );
-	        }
-	    }]);
+				removeFromCart(id);
+			}, _temp), _possibleConstructorReturn(_this, _ret);
+		}
 
-	    return CartItem;
+		_createClass(CartItem, [{
+			key: "render",
+			value: function render() {
+				var _props = this.props,
+				    type = _props.type,
+				    price = _props.price,
+				    quantity = _props.quantity;
+
+
+				return _react2.default.createElement(
+					"div",
+					{ className: "cart__item" },
+					_react2.default.createElement(
+						"span",
+						{ className: "cart__item__type" },
+						type
+					),
+					_react2.default.createElement(
+						"span",
+						{ className: "cart__item__quantity" },
+						quantity
+					),
+					_react2.default.createElement(
+						"span",
+						{ className: "cart__item__price" },
+						"$",
+						price
+					),
+					_react2.default.createElement(
+						"span",
+						{ className: "cart__item__remove", onClick: this.handleClick },
+						"Remove"
+					)
+				);
+			}
+		}]);
+
+		return CartItem;
 	}(_react.Component);
 
 	CartItem.propTypes = {
-	    type: _react.PropTypes.string.isRequired,
-	    price: _react.PropTypes.number.isRequired,
-	    quantity: _react.PropTypes.number.isRequired,
-	    removeFromCart: _react.PropTypes.func.isRequired
+		type: _react.PropTypes.string.isRequired,
+		price: _react.PropTypes.number.isRequired,
+		quantity: _react.PropTypes.number.isRequired,
+		removeFromCart: _react.PropTypes.func.isRequired
 	};
 
 	exports.default = CartItem;
@@ -24862,11 +24857,12 @@
 	exports.removeFromCart = removeFromCart;
 	exports.clearCart = clearCart;
 	exports.toggleCart = toggleCart;
-	function addToCart(productId) {
+	function addToCart(productId, quantity) {
 	    return {
 	        type: 'CART_ADD',
 	        payload: {
-	            productId: productId
+	            productId: productId,
+	            quantity: quantity
 	        }
 	    };
 	}
@@ -25024,13 +25020,23 @@
 	            args[_key] = arguments[_key];
 	        }
 
-	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Product.__proto__ || Object.getPrototypeOf(Product)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Product.__proto__ || Object.getPrototypeOf(Product)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	            quantity: 1
+	        }, _this.handleClick = function () {
 	            var _this$props = _this.props,
 	                id = _this$props.id,
 	                addToCart = _this$props.addToCart;
+	            var quantity = _this.state.quantity;
 
 
-	            addToCart(id);
+	            addToCart(id, quantity);
+	        }, _this.handleOnChange = function (e) {
+	            var quantity = _this.state.quantity;
+
+
+	            _this.setState({
+	                quantity: parseInt(e.currentTarget.value)
+	            });
 	        }, _temp), _possibleConstructorReturn(_this, _ret);
 	    }
 
@@ -25041,6 +25047,7 @@
 	                type = _props.type,
 	                price = _props.price,
 	                description = _props.description;
+	            var quantity = this.state.quantity;
 
 
 	            return _react2.default.createElement(
@@ -25062,6 +25069,7 @@
 	                    "$",
 	                    price
 	                ),
+	                _react2.default.createElement("input", { className: "product__input", type: "number", onChange: this.handleOnChange, value: quantity }),
 	                _react2.default.createElement(
 	                    "div",
 	                    { className: "product__button-wrap" },
@@ -25138,7 +25146,7 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+		value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25156,42 +25164,42 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var ActionBlock = function (_Component) {
-	    _inherits(ActionBlock, _Component);
+		_inherits(ActionBlock, _Component);
 
-	    function ActionBlock() {
-	        _classCallCheck(this, ActionBlock);
+		function ActionBlock() {
+			_classCallCheck(this, ActionBlock);
 
-	        return _possibleConstructorReturn(this, (ActionBlock.__proto__ || Object.getPrototypeOf(ActionBlock)).apply(this, arguments));
-	    }
+			return _possibleConstructorReturn(this, (ActionBlock.__proto__ || Object.getPrototypeOf(ActionBlock)).apply(this, arguments));
+		}
 
-	    _createClass(ActionBlock, [{
-	        key: 'render',
-	        value: function render() {
-	            var _props = this.props,
-	                numberInCart = _props.numberInCart,
-	                toggleCart = _props.toggleCart;
+		_createClass(ActionBlock, [{
+			key: 'render',
+			value: function render() {
+				var _props = this.props,
+				    numberInCart = _props.numberInCart,
+				    toggleCart = _props.toggleCart;
 
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'action-block' },
-	                _react2.default.createElement(
-	                    'button',
-	                    {
-	                        className: 'btn btn-primary',
-	                        onClick: function onClick() {
-	                            return toggleCart();
-	                        } },
-	                    'open model ',
-	                    _react2.default.createElement('br', null),
-	                    '#',
-	                    numberInCart,
-	                    ' Items in cart'
-	                )
-	            );
-	        }
-	    }]);
+				return _react2.default.createElement(
+					'div',
+					{ className: 'action-block' },
+					_react2.default.createElement(
+						'button',
+						{
+							className: 'btn btn-primary',
+							onClick: function onClick() {
+								return toggleCart();
+							} },
+						'open model ',
+						_react2.default.createElement('br', null),
+						'#',
+						numberInCart,
+						' Items in cart'
+					)
+				);
+			}
+		}]);
 
-	    return ActionBlock;
+		return ActionBlock;
 	}(_react.Component);
 
 	exports.default = ActionBlock;

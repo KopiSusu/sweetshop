@@ -9,17 +9,14 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case 'CART_ADD':
             if(isInCart({cart: state}, {id: action.payload.productId})) {
-
-                // Extremely interesting bug.... without log it refuses to update.... I am extremely unsure why
-                console.log(state.items.map(item => item.id === action.payload.productId ? { ...item, quantity: item.quantity++ } : item))
                 return {
                     ...state,
-                    items: (state.items.map(item => item.id === action.payload.productId ? { ...item, quantity: item.quantity++ } : item))
+                    items: state.items.map(item => item.id === action.payload.productId ? { ...item, quantity: (item.quantity + action.payload.quantity) } : item)
                 };
             }
             return {
                 ...state,
-                items: [ ...state.items, { id: action.payload.productId, quantity: 1}]
+                items: [ ...state.items, { id: action.payload.productId, quantity: action.payload.quantity}]
             };
         case 'CART_REMOVE':
             return {
