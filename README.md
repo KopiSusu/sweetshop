@@ -22,12 +22,12 @@ Iv used pretty standard commands just to keep it easy, webpack builds src into p
 ## File Structure
 
 	* -- src
-		  |___ actions
-		  |___ components
-		  |___ containers
-		  |___ data
-		  |___ reducers
-		  |___ index.js
+		|___ actions
+		|___ components
+		|___ containers
+		|___ data
+		|___ reducers
+		|___ index.js
 
 
 ## TEST FILES
