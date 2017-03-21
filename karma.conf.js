@@ -9,7 +9,6 @@ module.exports = (config) => {
 
 	    // The entry point for our test suite
 	    basePath: '.',
-	    autoWatch: true,
 	    files: [
 	    	'tests.webpack.js'
 	    ],
@@ -55,7 +54,7 @@ module.exports = (config) => {
 	    },
 
 	    reporters: ['dots'],
-	    singleRun: false, // exit after tests have completed
+	    singleRun: true, // exit after tests have completed
 
 	    webpackMiddleware: {
 	      	noInfo: true

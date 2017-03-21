@@ -17,7 +17,7 @@ describe('<App />', () => {
 	});
 
 	it('renders <Navbar />', function() {
-		expect(wrapper.contains(<Navbar title='Sugar Sweet Chocolate Treats'/>)).toBe(true)
+		expect(wrapper.contains(<Navbar title='Sugar Sweet Sugar Shop'/>)).toBe(true)
 	});
 
 	it('renders <Inventory />', function() {
