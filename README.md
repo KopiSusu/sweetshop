@@ -40,7 +40,7 @@ Should work on mobile, tablet, and desktop.
 
 ## NOTES:
 
-This is my code example project. I added minimal styling to the app, as it was not something I was focusing on for this small example. However I did use BEM methodology for what styling I had, as i find that BEM is great for creating univerally readable themes and understanding the relationship between your css and your html (because sometimes your css gets way more crazy then your JS). It should work on all devices, I put in a couple different breakpoints.
+This is my code example project. It is additive additions to krzysu https://github.com/krzysu/reactjs-shopping-cart in order to demonstrate an ability to work with another developers code. I added minimal styling to the app, as it was not something I was focusing on for this small example. However I did use BEM methodology for what styling I had, as i find that BEM is great for creating univerally readable themes and understanding the relationship between your css and your html (because sometimes your css gets way more crazy then your JS). It should work on all devices, I put in a couple different breakpoints.
 
 This was my first advent into Enzyme and I was amazed at how simple it was and easy to learn, especially compared to using the regular reactTestUtils (where your component test code normally doubles or tripples the size of your actual components). Their doc is pretty decent as well.
 
